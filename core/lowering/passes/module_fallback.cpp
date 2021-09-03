@@ -62,7 +62,9 @@ void NotateModuleForFallback(
   }
 
   for (const auto sub_mod : mod.named_children()) {
-    NotateModuleForFallback(sub_mod.value, sub_mod.name, method_name, forced_fallback_modules);
+    if (sub_mod.value.find_method(method_name)) {
+      NotateModuleForFallback(sub_mod.value, sub_mod.name, method_name, forced_fallback_modules);
+    }
   }
 }
 
