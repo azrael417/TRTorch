@@ -58,11 +58,6 @@ class Device(object):
                                 "Setting GPU id to 0 for device because device 0 manages DLA on Xavier")
 
         elif len(args) == 0:
-            # set DLA core
-            if "dla_core" in kwargs:
-                self.device_type = _types.DeviceType.DLA
-                self.dla_core = kwargs["dla_core"]
-
             # set gpu id
             if "gpu_id" in kwargs:
                 self.gpu_id = kwargs["gpu_id"]
@@ -70,6 +65,12 @@ class Device(object):
                 self.gpu_id = 0
                 logging.log(logging.log.Level.Warning,
                             "Setting GPU id to 0 for device because device 0 manages DLA on Xavier")
+            self.device_type = _types.DeviceType.GPU
+            
+            # set DLA core
+            if "dla_core" in kwargs:
+                self.device_type = _types.DeviceType.DLA
+                self.dla_core = kwargs["dla_core"]
 
             #if not "gpu_id" in kwargs or not "dla_core" in kwargs:
             #    if "dla_core" in kwargs:
