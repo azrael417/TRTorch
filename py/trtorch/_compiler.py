@@ -78,6 +78,7 @@ def compile(module: torch.jit.ScriptModule, compile_spec: Any) -> torch.jit.Scri
         raise TypeError(
             "torch.jit.ScriptFunction currently is not directly supported, wrap the function in a module to compile")
 
+    parsed_spec = _parse_compile_spec(compile_spec)
     compiled_cpp_mod = trtorch._C.compile_graph(module._c, _parse_compile_spec(compile_spec))
     compiled_module = torch.jit._recursive.wrap_cpp_module(compiled_cpp_mod)
     return compiled_module
