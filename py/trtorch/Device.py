@@ -71,7 +71,6 @@ class Device(object):
                 logging.log(logging.log.Level.Warning,
                             "Setting GPU id to 0 for device because device 0 manages DLA on Xavier")
 
-            print("DEBUG", self.device_type)
             #if not "gpu_id" in kwargs or not "dla_core" in kwargs:
             #    if "dla_core" in kwargs:
             #        self.device_type = _types.DeviceType.DLA
